@@ -3,7 +3,7 @@ export interface IActivity {
     title: string;
     description: string;
     category: string;
-    date: Date;
+    date: String;
     city: string;
     venue: string;
 }
