@@ -1,13 +1,14 @@
-import React, { useState, useEffect, Fragment, SyntheticEvent } from "react";
-import axios from "axios";
+import React, { useState, useEffect, Fragment, SyntheticEvent, useContext } from "react";
 import { Container } from "semantic-ui-react";
 import { IActivity } from "../models/activity";
 import { NavBar } from "../../features/nav/NavBar";
 import { ActivityDashboard } from "../../features/activities/dashboard/ActivityDashboard";
 import agent from "../api/agent";
 import LoadingComponent from "./LoadingComponent";
+import AvtivityStore from '../stores/activityStore';
 
 const App = () => {
+  const activityStore = useContext(AvtivityStore)
   const [activities, setActivities] = useState<IActivity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<IActivity | null>(
     null
@@ -75,6 +76,7 @@ const App = () => {
     <Fragment>
       <NavBar OpenCreateForm={handleOpenCreateForm} />
       <Container style={{ marginTop: "7em" }}>
+  <h1>{activityStore.title}</h1>
         <ActivityDashboard
           activities={activities}
           selectActivity={handleSelectActivity}
